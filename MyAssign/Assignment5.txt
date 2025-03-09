@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Text Analysis</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        .result {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Text Analysis</h1>
+    
+    <div id="originalText" class="result">
+        Two elite snipers receive identical missions: travel to a secret location and guard the west and east sides of a deep gorge for one year without any contact with the outside world or their counterparts on the opposite sides. Levi Kane, a former U.S. Marine Scout/Sniper and current private contractor agrees to guard the west tower. Drasa, a Lithuanian covert operative frequently employed by the Kremlin, guards the east side. Levi suffers from nightmares stemming from the guilt he has from killing enemies, while Drasa's father, Erikas, plans to suicide on Valentine's Day to reunite with his late wife.
+    </div>
+
+    <button onclick="analyzeText()">Analyze Text</button>
+
+    <div id="results"></div>
+
+    <script>
+        function analyzeText() {
+            const text = document.getElementById('originalText').innerText;
+            const resultsDiv = document.getElementById('results');
+            
+            //  หาตำแหน่งของคำว่า U.S
+            const usPosition = text.indexOf('U.S');
+            
+            // 	ทำการค้นหาและนับจำนวนคำว่า the หรือ The
+            const theCount = (text.match(/\b(the|The)\b/g) || []).length;
+            
+            // 	ค้นหาแทนคำ Drasa ด้วย actress
+            const replacedText = text.replace(/Drasa/g, 'actress');
+            
+            // Display results
+            resultsDiv.innerHTML = `
+                <div class="result">
+                    <h3>Results:</h3>
+                    <p>1. หาตำแหน่งของคำว่า U.S: ${usPosition}</p>
+                    <p>2. ทำการค้นหาและนับจำนวนคำว่า the หรือ The: ${theCount}</p>
+                    <p>3. ค้นหาแทนคำ Drasa ด้วย actress:</p>
+                    <p>${replacedText}</p>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
